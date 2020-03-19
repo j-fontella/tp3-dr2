@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/perguntas_navigation"
+    app:startDestination="@id/q1Fragment">
+
+    <fragment
+        android:id="@+id/q1Fragment"
+        android:name="com.example.tp3_dr2.fragments.Q1Fragment"
+        android:label="fragment_q1"
+        tools:layout="@layout/fragment_q1" />
+    <fragment
+        android:id="@+id/q2Fragment"
+        android:name="com.example.tp3_dr2.fragments.Q2Fragment"
+        android:label="fragment_q2"
+        tools:layout="@layout/fragment_q2" />
+</navigation>
