@@ -8,6 +8,13 @@
     <string name="app_start">Cadastrar</string>
     <string name="proxima">Proxima</string>
     <string name="anterior">Anterior</string>
+    <string name="soma">Obs: Efetue a somatória dos pontos referente a questão acima e escolha a alternativa equivalente</string>
+    <string name="zuponto">Entre 0 e 1 ponto</string>
+    <string name="dqponto">Entre 2 e 4 pontos</string>
+    <string name="mcponto">Acima de 5 pontos</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

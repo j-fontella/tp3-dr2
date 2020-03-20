@@ -1,11 +1,13 @@
 package com.example.tp3_dr2.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Questionario {
+public class Questionario implements Serializable {
 
     private ArrayList<Questao> questoes = new ArrayList<>();
-    private int pontuacao;
+    private ArrayList<Integer> pontuacao = new ArrayList<>();
+    private int score;
     private String perfil;
     private int navegador;
 
@@ -14,11 +16,11 @@ public class Questionario {
         navegador = 1;
     }
 
-    public int getPontuacao(){
-        return pontuacao;
+    public void removePontuacao(){
+        pontuacao.remove(pontuacao.size() - 1);
     }
-    public void addPontuacao(int pontos){
-        pontuacao += pontos;
+    public void addPontuacao(Integer pontos){
+        pontuacao.add(pontos);
     }
     public String getPerfil() {
         return perfil;
@@ -27,6 +29,9 @@ public class Questionario {
         this.perfil = perfil;
     }
 
+    public ArrayList<Integer> getPontuacao() {
+        return pontuacao;
+    }
 
     public int getNavegador() {
         return navegador;

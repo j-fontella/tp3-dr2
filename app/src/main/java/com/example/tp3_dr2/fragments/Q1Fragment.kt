@@ -35,10 +35,6 @@ class Q1Fragment : Fragment() {
             questionarioViewModel = ViewModelProviders.of(it).get(QuestionarioViewModel::class.java)
 
         }
-
-
-
-
         if(questionarioViewModel.questionario!!.navegador == 1){
             txtView_questao.text = "Questão 1"
             txtView_enunciado.text = "Por quanto tempo você pretende deixar seu dinheiro investido?"
@@ -47,20 +43,28 @@ class Q1Fragment : Fragment() {
             rBtn_q3.text = "Entre 1 ano e 6 anos"
             rBtn_q4.text = "Acima de 3 anos"
             btn_proximo.setOnClickListener {
-                if(rBtn_q2.isChecked){
-                    questionarioViewModel.questionario!!.addPontuacao(2)
-
+                if(!rBtn_q1.isChecked && !rBtn_q2.isChecked && !rBtn_q3.isChecked && !rBtn_q4.isChecked){
+                    Toast.makeText(activity!!.baseContext!!, "Marque todas opções", Toast.LENGTH_LONG).show()
                 }
-                else if(rBtn_q3.isChecked){
-                    questionarioViewModel.questionario!!.addPontuacao(3)
+                else{
+                    if(rBtn_q2.isChecked){
+                        questionarioViewModel.questionario!!.addPontuacao(2)
 
-                }
-                else if(rBtn_q4.isChecked){
-                    questionarioViewModel.questionario!!.addPontuacao(4)
+                    }
+                    else if(rBtn_q3.isChecked){
+                        questionarioViewModel.questionario!!.addPontuacao(3)
 
+                    }
+                    else if(rBtn_q4.isChecked){
+                        questionarioViewModel.questionario!!.addPontuacao(4)
+
+                    }
+                    questionarioViewModel.questionario!!.navegador = 2
+                    findNavController().navigate(R.id.q1Fragment)
                 }
-                questionarioViewModel.questionario!!.navegador = 2
-                findNavController().navigate(R.id.q1Fragment)
+            }
+            btn_anterior.setOnClickListener {
+                activity!!.finish()
             }
         }
         else if(questionarioViewModel.questionario!!.navegador == 2){
@@ -71,19 +75,30 @@ class Q1Fragment : Fragment() {
             rBtn_q3.text = "Aumento do capital acima da taxa de retorno média do mercado, mesmo que isso implique assumir riscos de perdas elevadas"
             rBtn_q4.text = "Obter no curto prazo retornos elevados e significativamente acima da taxa de retorno média do mercado, assumindo riscos elevados"
             btn_proximo.setOnClickListener {
-                if(rBtn_q2.isChecked){
-                    questionarioViewModel.questionario!!.addPontuacao(2)
-
+                if(!rBtn_q1.isChecked && !rBtn_q2.isChecked && !rBtn_q3.isChecked && !rBtn_q4.isChecked){
+                    Toast.makeText(activity!!.baseContext!!, "Marque todas opções", Toast.LENGTH_LONG).show()
                 }
-                else if(rBtn_q3.isChecked){
-                    questionarioViewModel.questionario!!.addPontuacao(4)
+                else{
+                    if(rBtn_q2.isChecked){
+                        questionarioViewModel.questionario!!.addPontuacao(2)
 
-                }
-                else if(rBtn_q4.isChecked){
-                    questionarioViewModel.questionario!!.addPontuacao(5)
+                    }
+                    else if(rBtn_q3.isChecked){
+                        questionarioViewModel.questionario!!.addPontuacao(4)
 
+                    }
+                    else if(rBtn_q4.isChecked){
+                        questionarioViewModel.questionario!!.addPontuacao(5)
+
+                    }
+                    questionarioViewModel.questionario!!.navegador = 3
+                    findNavController().navigate(R.id.q1Fragment)
                 }
-                questionarioViewModel.questionario!!.navegador = 3
+
+            }
+            btn_anterior.setOnClickListener {
+                questionarioViewModel.questionario!!.navegador -= 1
+                questionarioViewModel.questionario!!.removePontuacao()
                 findNavController().navigate(R.id.q1Fragment)
             }
         }
@@ -110,6 +125,12 @@ class Q1Fragment : Fragment() {
                 questionarioViewModel.questionario!!.navegador = 4
                 findNavController().navigate(R.id.q2Fragment)
             }
+            btn_anterior.setOnClickListener {
+                questionarioViewModel.questionario!!.navegador -= 1
+                questionarioViewModel.questionario!!.removePontuacao()
+                findNavController().navigate(R.id.q1Fragment)
+
+            }
         }
         else if(questionarioViewModel.questionario!!.navegador == 6){
             txtView_questao.text = "Questão 6"
@@ -131,12 +152,78 @@ class Q1Fragment : Fragment() {
                     questionarioViewModel.questionario!!.addPontuacao(4)
 
                 }
-//                questionarioViewModel.questionario!!.navegador = 7
-//                findNavController().navigate(R.id.q1Fragment)
-                  Toast.makeText(activity!!.baseContext, questionarioViewModel!!.questionario!!.perfil + " fez:"
-                  + questionarioViewModel!!.questionario!!.pontuacao + " pontos!", Toast.LENGTH_LONG).show()
+                  questionarioViewModel.questionario!!.navegador = 7
+                  findNavController().navigate(R.id.q1Fragment)
+
+            }
+            btn_anterior.setOnClickListener {
+                questionarioViewModel.questionario!!.navegador -= 1
+                questionarioViewModel.questionario!!.removePontuacao()
+                findNavController().navigate(R.id.q2Fragment)
             }
         }
+        else if(questionarioViewModel.questionario!!.navegador == 7){
+            txtView_questao.text = "Questão 7"
+            txtView_enunciado.text = "Em relação as aplicações e rendimentos, em qual dessas situações você se enquadra?"
+            rBtn_q1.text = "Conto com o rendimento dessas aplicações para complementar minha renda mensal"
+            rBtn_q2.text = "Eventualmente posso resgatar parte das aplicações para fazer frente aos meus gastos. " +
+                    "Contudo, não tenho intenção de resgatar no curto prazo e pretendo fazer aplicações regulares"
+            rBtn_q3.text = "Não tenho intenção de resgatar no curto prazo, mas não pretendo realizar novas aplicações"
+            rBtn_q4.text = "Não tenho intenção de resgatar no curto prazo e ainda pretendo fazer aplicações regulares"
+            btn_proximo.setOnClickListener {
+                if(rBtn_q2.isChecked){
+                    questionarioViewModel.questionario!!.addPontuacao(2)
+
+                }
+                else if(rBtn_q3.isChecked){
+                    questionarioViewModel.questionario!!.addPontuacao(3)
+
+                }
+                else if(rBtn_q4.isChecked){
+                    questionarioViewModel.questionario!!.addPontuacao(4)
+
+                }
+                questionarioViewModel.questionario!!.navegador = 8
+                findNavController().navigate(R.id.q3Fragment2)
+
+            }
+            btn_anterior.setOnClickListener {
+                questionarioViewModel.questionario!!.navegador -= 1
+                questionarioViewModel.questionario!!.removePontuacao()
+                findNavController().navigate(R.id.q1Fragment)
+            }
+        }
+        else if(questionarioViewModel.questionario!!.navegador == 10){
+            txtView_questao.text = "Questão 10"
+            txtView_enunciado.text = "Qual sua renda mensal média"
+            rBtn_q1.text = "Até R$1000"
+            rBtn_q2.text = "De R$1001 até R$5000"
+            rBtn_q3.text = "De R$5001 até R$10000"
+            rBtn_q4.text = "Acima de R$10000"
+            btn_proximo.setOnClickListener {
+                if(rBtn_q2.isChecked){
+                    questionarioViewModel.questionario!!.addPontuacao(1)
+
+                }
+                else if(rBtn_q3.isChecked){
+                    questionarioViewModel.questionario!!.addPontuacao(2)
+
+                }
+                else if(rBtn_q4.isChecked){
+                    questionarioViewModel.questionario!!.addPontuacao(4)
+
+                }
+                questionarioViewModel.questionario!!.navegador = 11
+                findNavController().navigate(R.id.q4Fragment)
+
+            }
+            btn_anterior.setOnClickListener {
+                questionarioViewModel.questionario!!.navegador -= 1
+                questionarioViewModel.questionario!!.removePontuacao()
+                findNavController().navigate(R.id.q3Fragment2)
+            }
+        }
+
     }
 
 

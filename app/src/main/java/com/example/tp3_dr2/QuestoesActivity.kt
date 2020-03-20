@@ -21,7 +21,5 @@ class QuestoesActivity : AppCompatActivity() {
 
     }
 
-    fun iniciarQuestionario(view: View){
 
-    }
 }

@@ -6,12 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 
 import com.example.tp3_dr2.R
 import com.example.tp3_dr2.viewmodels.QuestionarioViewModel
 import kotlinx.android.synthetic.main.fragment_q2.*
+import kotlinx.android.synthetic.main.fragment_q2.btn_anterior
+import kotlinx.android.synthetic.main.fragment_q2.btn_proximo
+import kotlinx.android.synthetic.main.fragment_q2.rBtn_q2
+import kotlinx.android.synthetic.main.fragment_q2.rBtn_q3
+
 
 /**
  * A simple [Fragment] subclass.
@@ -35,9 +41,6 @@ class Q2Fragment : Fragment() {
         }
 
 
-
-
-
         if (questionarioViewModel.questionario!!.navegador == 4) {
             txtView_questao.text = "Questão 4"
             txtView_enunciado.text =
@@ -51,9 +54,13 @@ class Q2Fragment : Fragment() {
                 } else if (rBtn_q3.isChecked) {
                     questionarioViewModel.questionario!!.addPontuacao(4)
                 }
-
                 questionarioViewModel.questionario!!.navegador = 5
                 findNavController().navigate(R.id.q2Fragment)
+            }
+            btn_anterior.setOnClickListener {
+                questionarioViewModel.questionario!!.navegador -= 1
+                questionarioViewModel.questionario!!.removePontuacao()
+                findNavController().navigate(R.id.q1Fragment)
             }
         } else if (questionarioViewModel.questionario!!.navegador == 5) {
             txtView_questao.text = "Questão 5"
@@ -68,9 +75,13 @@ class Q2Fragment : Fragment() {
                 } else if (rBtn_q3.isChecked) {
                     questionarioViewModel.questionario!!.addPontuacao(4)
                 }
-
                 questionarioViewModel.questionario!!.navegador = 6
                 findNavController().navigate(R.id.q1Fragment)
+            }
+            btn_anterior.setOnClickListener {
+                questionarioViewModel.questionario!!.navegador -= 1
+                questionarioViewModel.questionario!!.removePontuacao()
+                findNavController().navigate(R.id.q2Fragment)
             }
         }
     }
