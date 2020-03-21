@@ -10,19 +10,4 @@
         android:name="com.example.tp3_dr2.fragments.Q1Fragment"
         android:label="fragment_q1"
         tools:layout="@layout/fragment_q1" />
-    <fragment
-        android:id="@+id/q2Fragment"
-        android:name="com.example.tp3_dr2.fragments.Q2Fragment"
-        android:label="fragment_q2"
-        tools:layout="@layout/fragment_q2" />
-    <fragment
-        android:id="@+id/q3Fragment2"
-        android:name="com.example.tp3_dr2.fragments.Q3Fragment"
-        android:label="fragment_q3"
-        tools:layout="@layout/fragment_q3" />
-    <fragment
-        android:id="@+id/q4Fragment"
-        android:name="com.example.tp3_dr2.fragments.Q4Fragment"
-        android:label="fragment_q4"
-        tools:layout="@layout/fragment_q4" />
 </navigation>

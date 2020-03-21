@@ -1,9 +1,12 @@
 package com.example.tp3_dr2
 
 import android.os.Bundle
+import android.view.KeyEvent
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_pontuacao.*
-import java.util.ArrayList
+import java.util.*
+import kotlin.concurrent.schedule
 
 class PontuacaoActivity : AppCompatActivity() {
 
@@ -18,6 +21,7 @@ class PontuacaoActivity : AppCompatActivity() {
         respostas.forEach {
             finalscore += it
         }
+        Toast.makeText(this, "Você fez: " + finalscore + " pontos", Toast.LENGTH_SHORT).show()
         if(finalscore <= 14){
             txtVw_perfil.text = "Conservador"
         }
@@ -27,7 +31,13 @@ class PontuacaoActivity : AppCompatActivity() {
         else{
             txtVw_perfil.text = "Arrojado"
         }
+    }
 
+    override fun onBackPressed() {
+        Toast.makeText(this, "Renicie o APP para fazer o teste novamente", Toast.LENGTH_SHORT).show()
 
     }
+
+
+
 }

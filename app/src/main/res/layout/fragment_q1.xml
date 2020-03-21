@@ -52,28 +52,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="A economia lorem ipsun alsacia lorena" />
+                android:text="777                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     " />
 
             <RadioButton
                 android:id="@+id/rBtn_q2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="Gaste toda economia da familia em ações de alto risco!" />
+                android:text="777" />
 
             <RadioButton
                 android:id="@+id/rBtn_q3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="Imprimir moedas para resolver o defict publico funciona!" />
+                android:text="777" />
 
             <RadioButton
                 android:id="@+id/rBtn_q4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
-                android:text="Por que a economia desandou? Pq eu quis!" />
+                android:text="777" />
+
+            <RadioButton
+                android:id="@+id/rBtn_q5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="777" />
         </RadioGroup>
 
         <Button

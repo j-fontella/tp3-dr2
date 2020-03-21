@@ -5,9 +5,7 @@ import java.util.ArrayList;
 
 public class Questionario implements Serializable {
 
-    private ArrayList<Questao> questoes = new ArrayList<>();
     private ArrayList<Integer> pontuacao = new ArrayList<>();
-    private int score;
     private String perfil;
     private int navegador;
 
