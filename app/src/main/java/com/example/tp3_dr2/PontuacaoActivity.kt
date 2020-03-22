@@ -15,21 +15,21 @@ class PontuacaoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_pontuacao)
         var respostas = intent.getSerializableExtra("respostas") as ArrayList<Int>
         var cliente = intent.getStringExtra("cliente")
-
+        txtVw_perfil.text = "Classificação do perfil do investidor"
         txtVw_nome.text = cliente
         var finalscore = 0
         respostas.forEach {
             finalscore += it
         }
         Toast.makeText(this, "Você fez: " + finalscore + " pontos", Toast.LENGTH_SHORT).show()
-        if(finalscore <= 14){
-            txtVw_perfil.text = "Conservador"
+        if(finalscore <= 12){
+            txtVw_result.text = "Conservador"
         }
-        else if(finalscore >= 15 && finalscore <= 35){
-            txtVw_perfil.text = "Moderado"
+        else if(finalscore >= 13 && finalscore <= 29){
+            txtVw_result.text = "Moderado"
         }
         else{
-            txtVw_perfil.text = "Arrojado"
+            txtVw_result.text = "Arrojado"
         }
     }
 

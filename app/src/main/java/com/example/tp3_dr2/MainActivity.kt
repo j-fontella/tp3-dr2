@@ -5,7 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import android.R.attr.fragment
 import kotlinx.android.synthetic.main.activity_main.*
+import android.R.attr.fragment
+import androidx.core.app.ComponentActivity.ExtraData
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import com.example.tp3_dr2.fragments.Q1Fragment
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,6 +19,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
+
+
 
     fun redirecionarQuestoes(view: View){
         var intent = Intent(this, QuestoesActivity::class.java)

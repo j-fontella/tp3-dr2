@@ -16,7 +16,7 @@ import com.example.tp3_dr2.PontuacaoActivity
 import com.example.tp3_dr2.R
 import com.example.tp3_dr2.viewmodels.QuestionarioViewModel
 import kotlinx.android.synthetic.main.fragment_q1.*
-import kotlinx.android.synthetic.main.fragment_q1.btn_anterior
+
 import kotlinx.android.synthetic.main.fragment_q1.btn_proximo
 import kotlinx.android.synthetic.main.fragment_q1.rBtn_q1
 import kotlinx.android.synthetic.main.fragment_q1.rBtn_q2
@@ -49,19 +49,74 @@ class Q1Fragment : Fragment() {
             questionarioViewModel = ViewModelProviders.of(it).get(QuestionarioViewModel::class.java)
 
         }
+        questionarioViewModel.questionario!!.addQuestao("Questao 1",
+            "Por quanto tempo você pretende deixar seu dinheiro investido",
+            "Menos de 6 meses",
+            "Menos de 6 meses",
+            "Entre 1 ano e 6 Anos",
+            "Acima de 3 anos")
+        questionarioViewModel.questionario!!.addQuestao("Questao 2",
+            "Qual o objetivo desse investimento? ",
+            "Preservação do capital para não perder valor ao longo do tempo, assumindo baixos riscos de perdas",
+            "Aumento gradual do capital ao longo do tempo, assumindo riscos moderados",
+            "Aumento do capital acima da taxa de retorno média do mercado, mesmo que isso implique assumir riscos de perdas elevadas",
+            "Obter no curto prazo retornos elevados e significativamente acima da taxa de retorno média do mercado, assumindo riscos elevados")
+        questionarioViewModel.questionario!!.addQuestao("Questao 3",
+            "Qual das alternativas melhor classifica sua formação e experiência com o mercado financeiro?",
+            "Não possuo formação acadêmica ou conhecimento do mercado financeiro",
+            "Possuo formação acadêmica na área financeira, mas não tenho experiência com o mercado financeiro",
+            "Possuo formação acadêmica em outra área, mas possuo conhecimento do mercado financeiro",
+            "Possuo formação acadêmica na área financeira ou pleno conhecimento do mercado financeiro")
+        questionarioViewModel.questionario!!.addQuestao("Questao 4",
+            "Considerando seus rendimentos regulares, qual a porcentagem você pretende reservar para aplicações financeiras?",
+            "No máximo 25%",
+            "Entre 25,01 e 50%",
+            "Mais de 50%")
+
+        questionarioViewModel.questionario!!.addQuestao("Questao 5",
+            "Caso as suas aplicações sofressem uma queda superior a 30%, o que você faria?",
+            "Resgataria toda a aplicação e aplicaria na poupança",
+            "Manteria aplicação aguardando uma melhora do mercado",
+            "Aumentaria a aplicação para aproveitar as oportunidades do mercado")
+        questionarioViewModel.questionario!!.addQuestao("Questao 6",
+            "Como está distribuído o seu patrimônio?",
+            "Meu patrimônio não está aplicado ou está todo aplicado em renda fixa e/ou imóveis",
+            "Menos de 25% em renda variável e o restante em renda fixa e/ou imóveis",
+            "Entre 25,01 e 50% aplicado em renda variável e o restante em renda fixa e/ou imóveis",
+            "Acima de 50% em renda variável")
+        questionarioViewModel.questionario!!.addQuestao("Questao 7",
+            "Em relação as aplicações e rendimentos, em qual dessas situações você se enquadra?",
+            "Conto com o rendimento dessas aplicações para complementar minha renda mensal",
+            "Eventualmente posso resgatar parte das aplicações para fazer frente aos meus gastos. " +
+                    "Contudo, não tenho intenção de resgatar no curto prazo e pretendo fazer aplicações regulares",
+            "Não tenho intenção de resgatar no curto prazo, mas não pretendo realizar novas aplicações",
+            "Não tenho intenção de resgatar no curto prazo e ainda pretendo fazer aplicações regulares")
+        questionarioViewModel.questionario!!.addQuestao("Questao 8",
+            "Qual sua faixa de renda mensal média?",
+            "Até R$1000",
+            "R$ 10001 até R$5000",
+            "R$5001 até R$10000",
+            "Acima de R$10000")
+        questionarioViewModel.questionario!!.addQuestao("Questao 9",
+            "11. Qual o valor aproximado do seu patrimônio?",
+            "Até R$10000",
+            "De R$ 10.001 até R$ 100.000",
+            "De R$ 100.001 até R$ 500.000",
+            "De R$ 500.001 até R$ 1.000.000",
+            "Acima de R$ 1.000.001 ")
         if (questionarioViewModel.questionario!!.navegador == 1) {
-            txtView_questao.text = "Questão 1"
-            txtView_enunciado.text = "Por quanto tempo você pretende deixar seu dinheiro investido?"
-            rBtn_q1.text = "Menos de 6 meses"
-            rBtn_q2.text = "Entre 6 meses e 1 ano"
-            rBtn_q3.text = "Entre 1 ano e 6 anos"
-            rBtn_q4.text = "Acima de 3 anos"
+            txtView_questao.text = questionarioViewModel.questionario!!.questoes.get(0).enunciado
+            txtView_enunciado.text = questionarioViewModel.questionario!!.questoes.get(0).getqNumero()
+            rBtn_q1.text = questionarioViewModel.questionario!!.questoes.get(0).respostas.get(0)
+            rBtn_q2.text = questionarioViewModel.questionario!!.questoes.get(0).respostas.get(1)
+            rBtn_q3.text = questionarioViewModel.questionario!!.questoes.get(0).respostas.get(2)
+            rBtn_q4.text = questionarioViewModel.questionario!!.questoes.get(0).respostas.get(3)
             rBtn_q5.visibility = View.INVISIBLE
             btn_proximo.setOnClickListener {
                 if (!rBtn_q1.isChecked && !rBtn_q2.isChecked && !rBtn_q3.isChecked && !rBtn_q4.isChecked) {
                     Toast.makeText(
                         activity!!.baseContext!!,
-                        "Marque todas opções",
+                        "Marque pelo menos uma opção",
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
@@ -80,26 +135,21 @@ class Q1Fragment : Fragment() {
                     findNavController().navigate(R.id.q1Fragment)
                 }
             }
-            btn_anterior.setOnClickListener {
-                activity!!.finish()
-            }
-        } else if (questionarioViewModel.questionario!!.navegador == 2) {
-            txtView_questao.text = "Questão 2"
-            txtView_enunciado.text = "Qual objetivo desse investimento?"
-            rBtn_q1.text =
-                "Preservação do capital para não perder valor ao longo do tempo, assumindo baixos riscos de perdas"
-            rBtn_q2.text =
-                "Aumento gradual do capital ao longo do tempo, assumindo riscos moderados"
-            rBtn_q3.text =
-                "Aumento do capital acima da taxa de retorno média do mercado, mesmo que isso implique assumir riscos de perdas elevadas"
-            rBtn_q4.text =
-                "Obter no curto prazo retornos elevados e significativamente acima da taxa de retorno média do mercado, assumindo riscos elevados"
+
+        }
+        else if (questionarioViewModel.questionario!!.navegador == 2) {
+            txtView_questao.text = questionarioViewModel.questionario!!.questoes.get(1).enunciado
+            txtView_enunciado.text = questionarioViewModel.questionario!!.questoes.get(1).getqNumero()
+            rBtn_q1.text = questionarioViewModel.questionario!!.questoes.get(1).respostas.get(0)
+            rBtn_q2.text = questionarioViewModel.questionario!!.questoes.get(1).respostas.get(1)
+            rBtn_q3.text = questionarioViewModel.questionario!!.questoes.get(1).respostas.get(2)
+            rBtn_q4.text = questionarioViewModel.questionario!!.questoes.get(1).respostas.get(3)
             rBtn_q5.visibility = View.INVISIBLE
             btn_proximo.setOnClickListener {
                 if (!rBtn_q1.isChecked && !rBtn_q2.isChecked && !rBtn_q3.isChecked && !rBtn_q4.isChecked) {
                     Toast.makeText(
                         activity!!.baseContext!!,
-                        "Marque todas opções",
+                        "Marque pelo menos uma opção",
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
@@ -120,29 +170,21 @@ class Q1Fragment : Fragment() {
                 }
 
             }
-            btn_anterior.setOnClickListener {
-                questionarioViewModel.questionario!!.navegador -= 1
-                questionarioViewModel.questionario!!.removePontuacao()
-                findNavController().navigate(R.id.q1Fragment)
-            }
+
 
         } else if (questionarioViewModel.questionario!!.navegador == 3) {
-            txtView_questao.text = "Questão 3"
-            txtView_enunciado.text =
-                "Qual das alternativas melhor classifica sua formação e experiência com o mercado financeiro?"
-            rBtn_q1.text = "Não possuo formação acadêmica ou conhecimento do mercado financeiro"
-            rBtn_q2.text =
-                "Possuo formação acadêmica na área financeira mas não tenho experiência com o mercado financeiro"
-            rBtn_q3.text =
-                "Possuo formação acadêmica em outra área, mas possuo conhecimento do mercado financeiro"
-            rBtn_q4.text =
-                "Possuo formação acadêmica na área financeira ou pleno conhecimento do mercado financeiro"
+            txtView_questao.text = questionarioViewModel.questionario!!.questoes.get(2).enunciado
+            txtView_enunciado.text = questionarioViewModel.questionario!!.questoes.get(2).getqNumero()
+            rBtn_q1.text = questionarioViewModel.questionario!!.questoes.get(2).respostas.get(0)
+            rBtn_q2.text = questionarioViewModel.questionario!!.questoes.get(2).respostas.get(1)
+            rBtn_q3.text = questionarioViewModel.questionario!!.questoes.get(2).respostas.get(2)
+            rBtn_q4.text = questionarioViewModel.questionario!!.questoes.get(2).respostas.get(3)
             rBtn_q5.visibility = View.INVISIBLE
             btn_proximo.setOnClickListener {
                 if (!rBtn_q1.isChecked && !rBtn_q2.isChecked && !rBtn_q3.isChecked && !rBtn_q4.isChecked) {
                     Toast.makeText(
                         activity!!.baseContext!!,
-                        "Marque todas opções",
+                        "Marque pelo menos uma opção",
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
@@ -162,25 +204,20 @@ class Q1Fragment : Fragment() {
                     findNavController().navigate(R.id.q1Fragment)
                 }
             }
-            btn_anterior.setOnClickListener {
-                questionarioViewModel.questionario!!.navegador -= 1
-                questionarioViewModel.questionario!!.removePontuacao()
-                findNavController().navigate(R.id.q1Fragment)
-            }
+
         } else if (questionarioViewModel.questionario!!.navegador == 4) {
-            txtView_questao.text = "Questão 4"
-            txtView_enunciado.text =
-                "Considerando seus rendimentos regulares, qual a porcentagem você pretende reservar para aplicações financeiras?"
-            rBtn_q1.text = "No máximo 25% "
-            rBtn_q2.text = "Entre 25.01% e 50%"
-            rBtn_q3.text = "Acima de 50%"
+            txtView_questao.text = questionarioViewModel.questionario!!.questoes.get(3).enunciado
+            txtView_enunciado.text = questionarioViewModel.questionario!!.questoes.get(3).getqNumero()
+            rBtn_q1.text = questionarioViewModel.questionario!!.questoes.get(3).respostas.get(0)
+            rBtn_q2.text = questionarioViewModel.questionario!!.questoes.get(3).respostas.get(1)
+            rBtn_q3.text = questionarioViewModel.questionario!!.questoes.get(3).respostas.get(2)
             rBtn_q4.visibility = View.INVISIBLE
             rBtn_q5.visibility = View.INVISIBLE
             btn_proximo.setOnClickListener {
                 if (!rBtn_q1.isChecked && !rBtn_q2.isChecked && !rBtn_q3.isChecked) {
                     Toast.makeText(
                         activity!!.baseContext!!,
-                        "Marque todas opções",
+                        "Marque pelo menos uma opção",
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
@@ -196,25 +233,20 @@ class Q1Fragment : Fragment() {
 
                 }
             }
-            btn_anterior.setOnClickListener {
-                questionarioViewModel.questionario!!.navegador -= 1
-                questionarioViewModel.questionario!!.removePontuacao()
-                findNavController().navigate(R.id.q1Fragment)
-            }
+
         } else if (questionarioViewModel.questionario!!.navegador == 5) {
-            txtView_questao.text = "Questão 5"
-            txtView_enunciado.text =
-                "Caso as suas aplicações sofressem uma queda superior a 30%, o que você faria?"
-            rBtn_q1.text = "Resgataria toda a aplicação e aplicaria na poupança "
-            rBtn_q2.text = "Manteria aplicação aguardando uma melhora do mercado "
-            rBtn_q3.text = "Aumentaria a aplicação para aproveitar as oportunidades do mercado"
+            txtView_questao.text = questionarioViewModel.questionario!!.questoes.get(4).enunciado
+            txtView_enunciado.text = questionarioViewModel.questionario!!.questoes.get(4).getqNumero()
+            rBtn_q1.text = questionarioViewModel.questionario!!.questoes.get(4).respostas.get(0)
+            rBtn_q2.text = questionarioViewModel.questionario!!.questoes.get(4).respostas.get(1)
+            rBtn_q3.text = questionarioViewModel.questionario!!.questoes.get(4).respostas.get(2)
             rBtn_q4.visibility = View.INVISIBLE
             rBtn_q5.visibility = View.INVISIBLE
             btn_proximo.setOnClickListener {
                 if (!rBtn_q1.isChecked && !rBtn_q2.isChecked && !rBtn_q3.isChecked) {
                     Toast.makeText(
                         activity!!.baseContext!!,
-                        "Marque todas opções",
+                        "Marque pelo menos uma opção",
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
@@ -230,27 +262,21 @@ class Q1Fragment : Fragment() {
 
                 }
             }
-            btn_anterior.setOnClickListener {
-                questionarioViewModel.questionario!!.navegador -= 1
-                questionarioViewModel.questionario!!.removePontuacao()
-                findNavController().navigate(R.id.q1Fragment)
-            }
+
         } else if (questionarioViewModel.questionario!!.navegador == 6) {
-            txtView_questao.text = "Questão 6"
-            txtView_enunciado.text = "Como está distribuido seu patrimônio?"
-            rBtn_q1.text =
-                "Meu patrimônio não está aplicado ou está todo aplicado em renda fixa e/ou imóveis"
-            rBtn_q2.text = "Menos de 25% em renda variável e o restante em renda fixa e/ou imóveis"
-            rBtn_q3.text =
-                "Entre 25,01 e 50% aplicado em renda variável e o restante em renda fixa e/ou imóveis"
-            rBtn_q4.text = "Acima de 50% em renda variável"
+            txtView_questao.text = questionarioViewModel.questionario!!.questoes.get(5).enunciado
+            txtView_enunciado.text = questionarioViewModel.questionario!!.questoes.get(5).getqNumero()
+            rBtn_q1.text = questionarioViewModel.questionario!!.questoes.get(5).respostas.get(0)
+            rBtn_q2.text = questionarioViewModel.questionario!!.questoes.get(5).respostas.get(1)
+            rBtn_q3.text = questionarioViewModel.questionario!!.questoes.get(5).respostas.get(2)
+            rBtn_q4.text = questionarioViewModel.questionario!!.questoes.get(5).respostas.get(3)
             rBtn_q5.visibility = View.INVISIBLE
             btn_proximo.setOnClickListener {
                 if (!rBtn_q1.isChecked && !rBtn_q2.isChecked && !rBtn_q3.isChecked && !rBtn_q4.isChecked) {
                     Toast.makeText(
 
                         activity!!.baseContext!!,
-                        "Marque todas opções",
+                        "Marque pelo menos uma opção",
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
@@ -271,30 +297,20 @@ class Q1Fragment : Fragment() {
 
                 }
             }
-            btn_anterior.setOnClickListener {
-                questionarioViewModel.questionario!!.navegador -= 1
-                questionarioViewModel.questionario!!.removePontuacao()
-                findNavController().navigate(R.id.q1Fragment)
-            }
+
         } else if (questionarioViewModel.questionario!!.navegador == 7) {
-            txtView_questao.text = "Questão 7"
-            txtView_enunciado.text =
-                "Em relação as aplicações e rendimentos, em qual dessas situações você se enquadra?"
-            rBtn_q1.text =
-                "Conto com o rendimento dessas aplicações para complementar minha renda mensal"
-            rBtn_q2.text =
-                "Eventualmente posso resgatar parte das aplicações para fazer frente aos meus gastos. " +
-                        "Contudo, não tenho intenção de resgatar no curto prazo e pretendo fazer aplicações regulares"
-            rBtn_q3.text =
-                "Não tenho intenção de resgatar no curto prazo, mas não pretendo realizar novas aplicações"
-            rBtn_q4.text =
-                "Não tenho intenção de resgatar no curto prazo e ainda pretendo fazer aplicações regulares"
+            txtView_questao.text = questionarioViewModel.questionario!!.questoes.get(6).enunciado
+            txtView_enunciado.text = questionarioViewModel.questionario!!.questoes.get(6).getqNumero()
+            rBtn_q1.text = questionarioViewModel.questionario!!.questoes.get(6).respostas.get(0)
+            rBtn_q2.text = questionarioViewModel.questionario!!.questoes.get(6).respostas.get(1)
+            rBtn_q3.text = questionarioViewModel.questionario!!.questoes.get(6).respostas.get(2)
+            rBtn_q4.text = questionarioViewModel.questionario!!.questoes.get(6).respostas.get(3)
             rBtn_q5.visibility = View.INVISIBLE
             btn_proximo.setOnClickListener {
                 if (!rBtn_q1.isChecked && !rBtn_q2.isChecked && !rBtn_q3.isChecked && !rBtn_q4.isChecked) {
                     Toast.makeText(
                         activity!!.baseContext!!,
-                        "Marque todas opções",
+                        "Marque pelo menos uma opção",
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
@@ -315,24 +331,20 @@ class Q1Fragment : Fragment() {
                 }
             }
 
-            btn_anterior.setOnClickListener {
-                questionarioViewModel.questionario!!.navegador -= 1
-                questionarioViewModel.questionario!!.removePontuacao()
-                findNavController().navigate(R.id.q1Fragment)
-            }
+
         } else if (questionarioViewModel.questionario!!.navegador == 8) {
-            txtView_questao.text = "Questão 8"
-            txtView_enunciado.text = "Qual sua renda mensal média"
-            rBtn_q1.text = "Até R$1000"
-            rBtn_q2.text = "De R$1001 até R$5000"
-            rBtn_q3.text = "De R$5001 até R$10000"
-            rBtn_q4.text = "Acima de R$10000"
+            txtView_questao.text = questionarioViewModel.questionario!!.questoes.get(7).enunciado
+            txtView_enunciado.text = questionarioViewModel.questionario!!.questoes.get(7).getqNumero()
+            rBtn_q1.text = questionarioViewModel.questionario!!.questoes.get(7).respostas.get(0)
+            rBtn_q2.text = questionarioViewModel.questionario!!.questoes.get(7).respostas.get(1)
+            rBtn_q3.text = questionarioViewModel.questionario!!.questoes.get(7).respostas.get(2)
+            rBtn_q4.text = questionarioViewModel.questionario!!.questoes.get(7).respostas.get(3)
             rBtn_q5.visibility = View.INVISIBLE
             btn_proximo.setOnClickListener {
                 if (!rBtn_q1.isChecked && !rBtn_q2.isChecked && !rBtn_q3.isChecked && !rBtn_q4.isChecked) {
                     Toast.makeText(
                         activity!!.baseContext!!,
-                        "Marque todas opções",
+                        "Marque pelo menos uma opção",
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
@@ -353,25 +365,21 @@ class Q1Fragment : Fragment() {
 
                 }
             }
-            btn_anterior.setOnClickListener {
-                questionarioViewModel.questionario!!.navegador -= 1
-                questionarioViewModel.questionario!!.removePontuacao()
-                findNavController().navigate(R.id.q1Fragment)
-            }
-        } else if (questionarioViewModel.questionario!!.navegador == 9) {
-            txtView_questao.text = "Questão 9"
-            txtView_enunciado.text = "Qual valor aproximado do seu patrimonio"
-            rBtn_q1.text = "Até R$10000"
-            rBtn_q2.text = "De R$ 10.001 até R$ 100.000"
-            rBtn_q3.text = "De R$ 100.001 até R$ 500.000"
-            rBtn_q4.text = "De R$ 500.001 até R$ 1.000.000"
-            rBtn_q5.text = "Acima de R$ 1.000.001"
 
+        } else if (questionarioViewModel.questionario!!.navegador == 9) {
+            txtView_questao.text = questionarioViewModel.questionario!!.questoes.get(8).enunciado
+            txtView_enunciado.text =
+                questionarioViewModel.questionario!!.questoes.get(8).getqNumero()
+            rBtn_q1.text = questionarioViewModel.questionario!!.questoes.get(8).respostas.get(0)
+            rBtn_q2.text = questionarioViewModel.questionario!!.questoes.get(8).respostas.get(1)
+            rBtn_q3.text = questionarioViewModel.questionario!!.questoes.get(8).respostas.get(2)
+            rBtn_q4.text = questionarioViewModel.questionario!!.questoes.get(8).respostas.get(3)
+            rBtn_q5.text = questionarioViewModel.questionario!!.questoes.get(8).respostas.get(4)
             btn_proximo.setOnClickListener {
                 if (!rBtn_q1.isChecked && !rBtn_q2.isChecked && !rBtn_q3.isChecked && !rBtn_q4.isChecked && !rBtn_q5.isChecked) {
                     Toast.makeText(
                         activity!!.baseContext!!,
-                        "Marque todas opções",
+                        "Marque pelo menos uma opção",
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
@@ -391,25 +399,19 @@ class Q1Fragment : Fragment() {
                         questionarioViewModel.questionario!!.addPontuacao(5)
 
                     }
-
                     val intent = Intent(activity!!.baseContext, PontuacaoActivity::class.java)
-                    var respostas = questionarioViewModel.questionario!!.pontuacao
-                    var cliente = questionarioViewModel.questionario!!.perfil
-                    intent.putExtra("respostas", respostas)
-                    intent.putExtra("cliente", cliente)
+                    intent.putExtra("respostas", questionarioViewModel.questionario!!.pontuacao)
+                    intent.putExtra("cliente", questionarioViewModel.questionario!!.perfil)
                     startActivity(intent)
                 }
 
             }
-            btn_anterior.setOnClickListener {
-                questionarioViewModel.questionario!!.navegador -= 1
-                questionarioViewModel.questionario!!.removePontuacao()
-                findNavController().navigate(R.id.q1Fragment)
-            }
+        }
+
 
         }
     }
 
-}
+
 
 
